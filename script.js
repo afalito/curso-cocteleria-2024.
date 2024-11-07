@@ -23,16 +23,12 @@ document.getElementById('logout-button').addEventListener('click', function() {
     document.getElementById('error-message').innerText = '';
 });
 
-// Smooth scrolling effect for links
-window.addEventListener('load', function() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+// Prevent the video container from being scrollable before login
+window.addEventListener('scroll', function() {
+    const videoScreen = document.getElementById('video-screen');
+    if (!videoScreen.classList.contains('hidden')) {
+        return;
+    } else {
+        window.scrollTo(0, 0); // Force the scroll to stay at the top if not logged in
+    }
 });
-
-
