@@ -2,7 +2,7 @@ document.getElementById('login-button').addEventListener('click', function() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-     if ((username.toLowerCase() === 'cursococteleria2024') && password === 'obsequio') {
+        if ((username.toLowerCase() === 'cursococteleria2024') && password === 'obsequio') {
         document.getElementById('login-screen').classList.add('hidden');
         const videoScreen = document.getElementById('video-screen');
         videoScreen.classList.remove('hidden');
