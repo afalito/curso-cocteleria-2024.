@@ -1,4 +1,3 @@
-<!-- First, create the structure for the web app with HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,16 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Header Section -->
+    <header id="main-header">
+        <h1>Curso de Coctelería 2024</h1>
+    </header>
+    
+    <!-- Login Screen -->
     <div id="login-screen">
         <div class="login-box">
-            <h1>Bienvenido al Curso de Coctelería 2024</h1>
+            <h2>Bienvenido al Curso de Coctelería 2024</h2>
+            <p>Accede con tu usuario y contraseña para disfrutar del contenido completo.</p>
             <input type="text" id="username" placeholder="Usuario">
             <input type="password" id="password" placeholder="Clave">
             <button id="login-button">Ingresar</button>
@@ -19,13 +25,22 @@
         </div>
     </div>
     
+    <!-- Video Screen -->
     <div id="video-screen" class="hidden">
-        <h1>Curso de Coctelería 2024</h1>
-        <video id="cocktail-video" controls>
-            <source src="video/cocktail_course.mp4" type="video/mp4">
-            Tu navegador no soporta este video.
-        </video>
-        <button id="logout-button">Cerrar Sesión</button>
+        <div class="video-container">
+            <h2>Curso de Coctelería 2024</h2>
+            <p>Disfruta de nuestro contenido exclusivo sobre coctelería profesional. Aprende técnicas, recetas y mucho más.</p>
+            <video id="cocktail-video" controls>
+                <source src="video/cocktail_course.mp4" type="video/mp4">
+                Tu navegador no soporta este video.
+            </video>
+            <button id="logout-button">Cerrar Sesión</button>
+        </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer id="main-footer">
+        <p>Fluxon 2024. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
