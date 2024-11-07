@@ -57,11 +57,3 @@ window.addEventListener('DOMContentLoaded', function() {
     mainContent.style.justifyContent = 'center';
     mainContent.style.alignItems = 'center';
 });
-
-// Improved scroll prevention to be user-friendly
-window.addEventListener('scroll', function() {
-    const videoScreen = document.getElementById('video-screen');
-    if (videoScreen.classList.contains('hidden')) {
-        alert('Inicia sesión para acceder al contenido.');
-    }
-});
