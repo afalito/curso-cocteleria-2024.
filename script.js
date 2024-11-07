@@ -8,6 +8,16 @@ document.getElementById('login-button').addEventListener('click', function() {
         videoScreen.classList.remove('hidden');
         videoScreen.style.display = 'block';
         videoScreen.classList.add('expanded'); // Add expanded class to make video container larger
+
+        // Update video iframe to load YouTube video
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
+        iframe.width = '640';
+        iframe.height = '360';
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        videoScreen.querySelector('.video-container').appendChild(iframe);
     } else {
         document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
         document.getElementById('error-message').style.color = 'red';
@@ -27,6 +37,12 @@ document.getElementById('logout-button').addEventListener('click', function() {
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
     document.getElementById('error-message').innerText = '';
+
+    // Remove iframe when logging out
+    const iframe = videoScreen.querySelector('iframe');
+    if (iframe) {
+        iframe.remove();
+    }
 });
 
 // Prevent the video container from being visible before login
