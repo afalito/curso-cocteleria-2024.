@@ -50,6 +50,12 @@ window.addEventListener('DOMContentLoaded', function() {
     const videoScreen = document.getElementById('video-screen');
     videoScreen.classList.add('hidden');
     videoScreen.style.display = 'none';
+
+    // Ensure everything is centered properly
+    const mainContent = document.getElementById('main-content');
+    mainContent.style.display = 'flex';
+    mainContent.style.justifyContent = 'center';
+    mainContent.style.alignItems = 'center';
 });
 
 // Prevent the video container from being scrollable before login
