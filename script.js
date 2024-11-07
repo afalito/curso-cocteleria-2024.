@@ -4,7 +4,13 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 let supabase;
 
 document.addEventListener('DOMContentLoaded', async function() {
-    supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    // Asegurarse de que la biblioteca de Supabase esté definida
+    if (typeof supabaseJs !== 'undefined') {
+        supabase = supabaseJs.createClient(supabaseUrl, supabaseKey);
+    } else {
+        console.error('Error: Supabase library is not loaded.');
+        return;
+    }
 
     const loginButton = document.getElementById('login-button');
     const logoutButton = document.getElementById('logout-button');
@@ -26,11 +32,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Verificar si el usuario ya está autenticado
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-        showVideoScreen();
-    } else {
-        hideVideoScreen();
+    try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            showVideoScreen();
+        } else {
+            hideVideoScreen();
+        }
+    } catch (error) {
+        console.error('Error al obtener la sesión:', error);
     }
 });
 
