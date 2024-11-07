@@ -1,9 +1,11 @@
 // Inicializa Supabase
 const supabaseUrl = "https://cidilhtkjcnonmiwssyv.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpZGlsaHRramNub25taXdzc3l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEwMTYxOTAsImV4cCI6MjA0NjU5MjE5MH0.FLsElpKlS1xgtzf43t10UwxE7_7_9GWtKbV0BbOFNKg";
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+let supabase;
 
-window.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
     const loginButton = document.getElementById('login-button');
     const logoutButton = document.getElementById('logout-button');
     const mainContent = document.getElementById('main-content');
