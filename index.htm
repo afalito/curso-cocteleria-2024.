@@ -1,0 +1,31 @@
+<!-- First, create the structure for the web app with HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Coctelería 2024</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>Bienvenido al Curso de Coctelería 2024</h1>
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Clave">
+            <button id="login-button">Ingresar</button>
+            <p id="error-message"></p>
+        </div>
+    </div>
+    
+    <div id="video-screen" class="hidden">
+        <h1>Curso de Coctelería 2024</h1>
+        <video id="cocktail-video" controls>
+            <source src="video/cocktail_course.mp4" type="video/mp4">
+            Tu navegador no soporta este video.
+        </video>
+        <button id="logout-button">Cerrar Sesión</button>
+    </div>
+</body>
+</html>
