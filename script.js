@@ -1,19 +1,46 @@
-document.getElementById('login-button').addEventListener('click', function() {
-    const username = document.getElementById('username').value.toLowerCase();
+// Inicializa Supabase
+const supabaseUrl = "https://cidilhtkjcnonmiwssyv.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpZGlsaHRramNub25taXdzc3l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEwMTYxOTAsImV4cCI6MjA0NjU5MjE5MH0.FLsElpKlS1xgtzf43t10UwxE7_7_9GWtKbV0BbOFNKg";
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+document.getElementById('login-button').addEventListener('click', async function() {
+    const email = document.getElementById('username').value.toLowerCase();
     const password = document.getElementById('password').value;
 
-    // Simulación de verificación del usuario
-    if (isValidUser(username, password)) {
-        sessionStorage.setItem('isLoggedIn', 'true'); // Guarda el estado de la sesión
-        showVideoScreen(); // Muestra la pantalla de video
-    } else {
+    try {
+        // Intentar iniciar sesión usando Supabase
+        const { user, error } = await supabase.auth.signInWithPassword({ email, password });
+        
+        if (error) {
+            throw error;
+        }
+
+        // Guardar el estado de sesión en el almacenamiento de la sesión
+        sessionStorage.setItem('isLoggedIn', 'true');
+        showVideoScreen(); // Mostrar la pantalla de video
+
+    } catch (error) {
         showErrorMessage('Usuario o clave incorrecta. Por favor, inténtalo de nuevo.');
+        console.error('Error al iniciar sesión:', error.message);
     }
 });
 
-document.getElementById('logout-button').addEventListener('click', function() {
-    sessionStorage.removeItem('isLoggedIn'); // Elimina el estado de sesión al cerrar sesión
-    hideVideoScreen(); // Oculta la pantalla de video
+document.getElementById('logout-button').addEventListener('click', async function() {
+    try {
+        // Cerrar sesión usando Supabase
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            throw error;
+        }
+
+        // Remover el estado de sesión
+        sessionStorage.removeItem('isLoggedIn');
+        hideVideoScreen(); // Ocultar la pantalla de video
+
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error.message);
+    }
 });
 
 window.addEventListener('DOMContentLoaded', function() {
@@ -30,11 +57,6 @@ window.addEventListener('DOMContentLoaded', function() {
     mainContent.style.justifyContent = 'center';
     mainContent.style.alignItems = 'center';
 });
-
-function isValidUser(username, password) {
-    // Validar usuario de manera simple sin incluir las credenciales directamente en el código
-    return username === 'cursococteleria2024' && password === 'obsequio';
-}
 
 function showVideoScreen() {
     document.getElementById('login-screen').classList.add('hidden');
