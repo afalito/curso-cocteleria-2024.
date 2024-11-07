@@ -4,8 +4,10 @@ document.getElementById('login-button').addEventListener('click', function() {
 
     if (username === 'cursococteleria2024' && password === 'obsequio') {
         document.getElementById('login-screen').classList.add('hidden');
-        document.getElementById('video-screen').classList.remove('hidden');
-        document.getElementById('video-screen').style.display = 'block';
+        const videoScreen = document.getElementById('video-screen');
+        videoScreen.classList.remove('hidden');
+        videoScreen.style.display = 'block';
+        videoScreen.classList.add('expanded'); // Add expanded class to make video container larger
     } else {
         document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
         document.getElementById('error-message').style.color = 'red';
@@ -17,8 +19,10 @@ document.getElementById('login-button').addEventListener('click', function() {
 });
 
 document.getElementById('logout-button').addEventListener('click', function() {
-    document.getElementById('video-screen').classList.add('hidden');
-    document.getElementById('video-screen').style.display = 'none';
+    const videoScreen = document.getElementById('video-screen');
+    videoScreen.classList.add('hidden');
+    videoScreen.style.display = 'none';
+    videoScreen.classList.remove('expanded'); // Remove expanded class when logged out
     document.getElementById('login-screen').classList.remove('hidden');
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
