@@ -10,8 +10,9 @@ body {
     background-color: #000;
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     min-height: 100vh;
 }
 
@@ -19,14 +20,33 @@ body {
     display: none;
 }
 
-/* Login Screen Styling */
-#login-screen, #video-screen {
-    width: 90%;
-    max-width: 500px;
+/* Header Styling */
+header {
     text-align: center;
+    margin-top: 20px;
 }
 
-.login-box {
+/* Main Content Styling */
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-box, .video-container {
     background: #111;
     padding: 30px;
     border-radius: 20px;
@@ -68,14 +88,7 @@ button:hover {
     font-size: 16px;
 }
 
-/* Video Screen Styling */
-#video-screen {
-    background: #111;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 25px rgba(255, 255, 255, 0.1);
-}
-
+/* Video Styling */
 video {
     width: 100%;
     max-height: 300px;
@@ -86,8 +99,13 @@ video {
 
 /* Typography and Aesthetics */
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 /* Additional Animations and Transitions */
@@ -106,4 +124,21 @@ button#logout-button {
 
 button#logout-button:hover {
     background: #555;
-} 
+}
+
+/* Footer Styling */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.1);
+    position: relative;
+    bottom: 0;
+}
+
+.footer-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+}
