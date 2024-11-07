@@ -14,10 +14,11 @@ body {
     align-items: center;
     justify-content: space-between;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Header Styling */
@@ -139,7 +140,7 @@ footer {
     padding: 20px;
     background-color: #111;
     box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.1);
-    position: relative;
+    position: absolute;
     bottom: 0;
 }
 
