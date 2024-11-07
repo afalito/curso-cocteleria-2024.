@@ -10,38 +10,41 @@
 <body>
     <!-- Header Section -->
     <header id="main-header">
-        <div class="header-container" style="text-align: center; margin-bottom: 20px;">
+        <div class="header-container">
             <h1>Curso de Coctelería 2024</h1>
         </div>
     </header>
     
-    <!-- Login Screen -->
-    <div id="login-screen" style="display: flex; justify-content: center; align-items: center; height: 70vh;">
-        <div class="login-box">
-            <h2>Bienvenido al Curso de Coctelería 2024</h2>
-            <p>Accede con tu usuario y contraseña para disfrutar del contenido completo.</p>
-            <input type="text" id="username" placeholder="Usuario">
-            <input type="password" id="password" placeholder="Clave">
-            <button id="login-button">Ingresar</button>
-            <p id="error-message"></p>
+    <!-- Main Content Wrapper -->
+    <main id="main-content">
+        <!-- Login Screen -->
+        <div id="login-screen" class="content-box">
+            <div class="login-box">
+                <h2>Bienvenido al Curso de Coctelería 2024</h2>
+                <p>Accede con tu usuario y contraseña para disfrutar del contenido completo.</p>
+                <input type="text" id="username" placeholder="Usuario">
+                <input type="password" id="password" placeholder="Clave">
+                <button id="login-button">Ingresar</button>
+                <p id="error-message"></p>
+            </div>
         </div>
-    </div>
-    
-    <!-- Video Screen -->
-    <div id="video-screen" class="hidden" style="display: flex; justify-content: center; align-items: center; height: 70vh;">
-        <div class="video-container">
-            <h2>Curso de Coctelería 2024</h2>
-            <p>Disfruta de nuestro contenido exclusivo sobre coctelería profesional. Aprende técnicas, recetas y mucho más.</p>
-            <video id="cocktail-video" controls>
-                <source src="video/cocktail_course.mp4" type="video/mp4">
-                Tu navegador no soporta este video.
-            </video>
-            <button id="logout-button">Cerrar Sesión</button>
+        
+        <!-- Video Screen -->
+        <div id="video-screen" class="content-box hidden">
+            <div class="video-container">
+                <h2>Curso de Coctelería 2024</h2>
+                <p>Disfruta de nuestro contenido exclusivo sobre coctelería profesional. Aprende técnicas, recetas y mucho más.</p>
+                <video id="cocktail-video" controls>
+                    <source src="video/cocktail_course.mp4" type="video/mp4">
+                    Tu navegador no soporta este video.
+                </video>
+                <button id="logout-button">Cerrar Sesión</button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Footer Section -->
-    <footer id="main-footer" style="text-align: center; padding: 20px; position: absolute; bottom: 0; width: 100%;">
+    <footer id="main-footer">
         <div class="footer-container">
             <p>Fluxon 2024. Todos los derechos reservados.</p>
         </div>
