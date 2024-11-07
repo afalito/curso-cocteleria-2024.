@@ -2,7 +2,7 @@ document.getElementById('login-button').addEventListener('click', function() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-        if ((username.toLowerCase() === 'cursococteleria2024') && password === 'obsequio') {
+    if ((username.toLowerCase() === 'cursococteleria2024') && password === 'obsequio') {
         document.getElementById('login-screen').classList.add('hidden');
         const videoScreen = document.getElementById('video-screen');
         videoScreen.classList.remove('hidden');
@@ -58,12 +58,10 @@ window.addEventListener('DOMContentLoaded', function() {
     mainContent.style.alignItems = 'center';
 });
 
-// Prevent the video container from being scrollable before login
+// Improved scroll prevention to be user-friendly
 window.addEventListener('scroll', function() {
     const videoScreen = document.getElementById('video-screen');
-    if (!videoScreen.classList.contains('hidden')) {
-        return;
-    } else {
-        window.scrollTo(0, 0); // Force the scroll to stay at the top if not logged in
+    if (videoScreen.classList.contains('hidden')) {
+        alert('Inicia sesión para acceder al contenido.');
     }
 });
