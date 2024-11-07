@@ -1,17 +1,11 @@
 // Inicializa Supabase
 const supabaseUrl = "https://cidilhtkjcnonmiwssyv.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpZGlsaHRramNub25taXdzc3l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEwMTYxOTAsImV4cCI6MjA0NjU5MjE5MH0.FLsElpKlS1xgtzf43t10UwxE7_7_9GWtKbV0BbOFNKg";
-let supabase;
+
+// Asegurarse de que la biblioteca de Supabase esté cargada correctamente
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener('DOMContentLoaded', async function() {
-    // Asegurarse de que la biblioteca de Supabase esté definida
-    if (typeof supabaseJs !== 'undefined') {
-        supabase = supabaseJs.createClient(supabaseUrl, supabaseKey);
-    } else {
-        console.error('Error: Supabase library is not loaded.');
-        return;
-    }
-
     const loginButton = document.getElementById('login-button');
     const logoutButton = document.getElementById('logout-button');
     const mainContent = document.getElementById('main-content');
