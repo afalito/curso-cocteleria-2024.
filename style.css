@@ -56,6 +56,13 @@ header {
     max-width: 350px;
 }
 
+/* Expanded Video Container for Logged-In State */
+.video-container.expanded {
+    max-width: 800px;
+    padding: 30px;
+    transition: all 0.5s ease;
+}
+
 input {
     width: 90%;
     padding: 10px;
@@ -98,7 +105,7 @@ button:hover {
 /* Video Styling */
 .video-container video {
     width: 100%;
-    max-height: 300px;
+    max-height: 500px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
     margin-bottom: 20px;
