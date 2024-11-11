@@ -57,13 +57,3 @@ window.addEventListener('DOMContentLoaded', function() {
     mainContent.style.justifyContent = 'center';
     mainContent.style.alignItems = 'center';
 });
-
-// Prevent the video container from being scrollable before login
-window.addEventListener('scroll', function() {
-    const videoScreen = document.getElementById('video-screen');
-    if (!videoScreen.classList.contains('hidden')) {
-        return;
-    } else {
-        window.scrollTo(0, 0); // Force the scroll to stay at the top if not logged in
-    }
-});
