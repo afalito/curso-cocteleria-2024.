@@ -1,123 +1,69 @@
-// Inicializa la autenticación simple
-const validUsername = "cursococteleria2024";
-const validPassword = "obsequio";
+document.getElementById('login-button').addEventListener('click', function() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const loginButton = document.getElementById('login-button');
-    const logoutButton = document.getElementById('logout-button');
-    const mainContent = document.getElementById('main-content');
+    if (username === 'cursococteleria2024' && password === 'obsequio') {
+        document.getElementById('login-screen').classList.add('hidden');
+        const videoScreen = document.getElementById('video-screen');
+        videoScreen.classList.remove('hidden');
+        videoScreen.style.display = 'block';
+        videoScreen.classList.add('expanded'); // Add expanded class to make video container larger
 
-    if (loginButton) {
-        loginButton.addEventListener('click', handleLogin);
-    }
-
-    if (logoutButton) {
-        logoutButton.addEventListener('click', handleLogout);
-    }
-
-    if (mainContent) {
-        // Asegúrate de que todo esté bien centrado
-        mainContent.style.display = 'flex';
-        mainContent.style.justifyContent = 'center';
-        mainContent.style.alignItems = 'center';
-    }
-
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        showVideoScreen();
+        // Update video iframe to load YouTube video
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
+        iframe.width = '640';
+        iframe.height = '360';
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        videoScreen.querySelector('.video-container').appendChild(iframe);
     } else {
-        hideVideoScreen();
+        document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
+        document.getElementById('error-message').style.color = 'red';
+        document.getElementById('error-message').classList.add('shake'); // Add shake animation
+        setTimeout(() => {
+            document.getElementById('error-message').classList.remove('shake');
+        }, 500); // Remove the shake class after the animation completes
     }
 });
 
-function handleLogin() {
-    const username = document.getElementById('username').value.toLowerCase();
-    const password = document.getElementById('password').value;
-
-    if (username === validUsername && password === validPassword) {
-        sessionStorage.setItem('isLoggedIn', 'true');
-        showVideoScreen();
-    } else {
-        showErrorMessage('Usuario o clave incorrecta. Por favor, inténtalo de nuevo.');
-    }
-}
-
-function handleLogout() {
-    sessionStorage.removeItem('isLoggedIn');
-    hideVideoScreen();
-}
-
-function showVideoScreen() {
-    const loginScreen = document.getElementById('login-screen');
+document.getElementById('logout-button').addEventListener('click', function() {
     const videoScreen = document.getElementById('video-screen');
-    const videoContainer = videoScreen ? videoScreen.querySelector('.video-container') : null;
-
-    if (loginScreen) {
-        loginScreen.classList.add('hidden');
-    }
-    
-    if (videoScreen) {
-        videoScreen.classList.remove('hidden');
-        videoScreen.style.display = 'block';
-        videoScreen.classList.add('expanded');
-    }
-
-    if (videoContainer) {
-        // Añade el video de YouTube solo si no está presente
-        if (!videoContainer.querySelector('iframe')) {
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
-            iframe.width = '640';
-            iframe.height = '360';
-            iframe.frameBorder = '0';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            videoContainer.appendChild(iframe);
-        }
-    }
-}
-
-function hideVideoScreen() {
-    const loginScreen = document.getElementById('login-screen');
-    const videoScreen = document.getElementById('video-screen');
-    const errorMessage = document.getElementById('error-message');
-    const videoContainer = videoScreen ? videoScreen.querySelector('.video-container') : null;
-
-    if (videoScreen) {
-        videoScreen.classList.add('hidden');
-        videoScreen.style.display = 'none';
-        videoScreen.classList.remove('expanded');
-    }
-    
-    if (loginScreen) {
-        loginScreen.classList.remove('hidden');
-    }
-
-    if (errorMessage) {
-        errorMessage.innerText = '';
-    }
-
-    // Limpiar los campos de entrada
+    videoScreen.classList.add('hidden');
+    videoScreen.style.display = 'none';
+    videoScreen.classList.remove('expanded'); // Remove expanded class when logged out
+    document.getElementById('login-screen').classList.remove('hidden');
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
+    document.getElementById('error-message').innerText = '';
 
-    // Remover el iframe del video al cerrar sesión
-    if (videoContainer) {
-        const iframe = videoContainer.querySelector('iframe');
-        if (iframe) {
-            iframe.remove();
-        }
+    // Remove iframe when logging out
+    const iframe = videoScreen.querySelector('iframe');
+    if (iframe) {
+        iframe.remove();
     }
-}
+});
 
-function showErrorMessage(message) {
-    const errorMessage = document.getElementById('error-message');
-    if (errorMessage) {
-        errorMessage.innerText = message;
-        errorMessage.style.color = 'red';
-        errorMessage.classList.add('shake');
-        setTimeout(() => {
-            errorMessage.classList.remove('shake');
-        }, 500);
+// Prevent the video container from being visible before login
+window.addEventListener('DOMContentLoaded', function() {
+    const videoScreen = document.getElementById('video-screen');
+    videoScreen.classList.add('hidden');
+    videoScreen.style.display = 'none';
+
+    // Ensure everything is centered properly
+    const mainContent = document.getElementById('main-content');
+    mainContent.style.display = 'flex';
+    mainContent.style.justifyContent = 'center';
+    mainContent.style.alignItems = 'center';
+});
+
+// Prevent the video container from being scrollable before login
+window.addEventListener('scroll', function() {
+    const videoScreen = document.getElementById('video-screen');
+    if (!videoScreen.classList.contains('hidden')) {
+        return;
+    } else {
+        window.scrollTo(0, 0); // Force the scroll to stay at the top if not logged in
     }
-}
+});
