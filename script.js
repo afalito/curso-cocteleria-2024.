@@ -11,17 +11,17 @@ document.getElementById('login-button').addEventListener('click', function() {
             videoScreen.classList.remove('hidden');
             videoScreen.style.display = 'block';
             videoScreen.classList.add('expanded', 'fade-in'); // Add expanded and fade-in class to make video container larger with transition
-        }, 500); // Delay to allow fade-out to complete
 
-        // Commented out YouTube iframe to test if this is the issue
-        // const iframe = document.createElement('iframe');
-        // iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
-        // iframe.width = '640';
-        // iframe.height = '360';
-        // iframe.frameBorder = '0';
-        // iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        // iframe.allowFullscreen = true;
-        // videoScreen.querySelector('.video-container').appendChild(iframe);
+            // Add back YouTube iframe for video display
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
+            iframe.width = '640';
+            iframe.height = '360';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            videoScreen.querySelector('.video-container').appendChild(iframe);
+        }, 500); // Delay to allow fade-out to complete
     } else {
         document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
         document.getElementById('error-message').style.color = 'red';
