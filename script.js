@@ -12,9 +12,9 @@ document.getElementById('login-button').addEventListener('click', function() {
             videoScreen.style.display = 'block';
             videoScreen.classList.add('expanded', 'fade-in'); // Add expanded and fade-in class to make video container larger with transition
 
-            // Add back YouTube iframe for video display
+            // Add YouTube iframe for video display with parameters to reduce ads
             const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
+            iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI?rel=0&modestbranding=1&iv_load_policy=3';
             iframe.width = '640';
             iframe.height = '360';
             iframe.frameBorder = '0';
