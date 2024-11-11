@@ -3,21 +3,25 @@ document.getElementById('login-button').addEventListener('click', function() {
     const password = document.getElementById('password').value;
 
     if (username === 'cursococteleria2024' && password === 'obsequio') {
-        document.getElementById('login-screen').classList.add('hidden');
-        const videoScreen = document.getElementById('video-screen');
-        videoScreen.classList.remove('hidden');
-        videoScreen.style.display = 'block';
-        videoScreen.classList.add('expanded'); // Add expanded class to make video container larger
+        // Add transition for a smoother change between screens
+        document.getElementById('login-screen').classList.add('fade-out');
+        setTimeout(() => {
+            document.getElementById('login-screen').classList.add('hidden');
+            const videoScreen = document.getElementById('video-screen');
+            videoScreen.classList.remove('hidden');
+            videoScreen.style.display = 'block';
+            videoScreen.classList.add('expanded', 'fade-in'); // Add expanded and fade-in class to make video container larger with transition
+        }, 500); // Delay to allow fade-out to complete
 
-        // Update video iframe to load YouTube video
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
-        iframe.width = '640';
-        iframe.height = '360';
-        iframe.frameBorder = '0';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        videoScreen.querySelector('.video-container').appendChild(iframe);
+        // Commented out YouTube iframe to test if this is the issue
+        // const iframe = document.createElement('iframe');
+        // iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI';
+        // iframe.width = '640';
+        // iframe.height = '360';
+        // iframe.frameBorder = '0';
+        // iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        // iframe.allowFullscreen = true;
+        // videoScreen.querySelector('.video-container').appendChild(iframe);
     } else {
         document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
         document.getElementById('error-message').style.color = 'red';
@@ -29,20 +33,24 @@ document.getElementById('login-button').addEventListener('click', function() {
 });
 
 document.getElementById('logout-button').addEventListener('click', function() {
+    // Add fade-out transition for smoother logout experience
     const videoScreen = document.getElementById('video-screen');
-    videoScreen.classList.add('hidden');
-    videoScreen.style.display = 'none';
-    videoScreen.classList.remove('expanded'); // Remove expanded class when logged out
-    document.getElementById('login-screen').classList.remove('hidden');
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('error-message').innerText = '';
+    videoScreen.classList.add('fade-out');
+    setTimeout(() => {
+        videoScreen.classList.add('hidden');
+        videoScreen.style.display = 'none';
+        videoScreen.classList.remove('expanded', 'fade-out'); // Remove expanded and fade-out class when logged out
+        document.getElementById('login-screen').classList.remove('hidden', 'fade-out');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('error-message').innerText = '';
 
-    // Remove iframe when logging out
-    const iframe = videoScreen.querySelector('iframe');
-    if (iframe) {
-        iframe.remove();
-    }
+        // Remove iframe when logging out
+        const iframe = videoScreen.querySelector('iframe');
+        if (iframe) {
+            iframe.remove();
+        }
+    }, 500); // Delay to allow fade-out to complete
 });
 
 // Prevent the video container from being visible before login
