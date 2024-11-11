@@ -8,25 +8,29 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Curso de Coctelería 2024</h1>
+    </header>
+
     <div id="main-content">
-        <div id="login-screen">
-            <h1>Bienvenido al Curso de Coctelería 2024</h1>
+        <div id="login-screen" class="content-box login-box">
+            <h2>Bienvenido al Curso de Coctelería 2024</h2>
             <p>Accede con tu usuario y contraseña para disfrutar del contenido completo.</p>
             <input type="text" id="username" placeholder="Usuario">
             <input type="password" id="password" placeholder="Clave">
             <button id="login-button">Ingresar</button>
-            <p id="error-message"></p>
+            <p id="error-message" class="hidden"></p>
         </div>
 
-        <div id="video-screen" class="hidden">
-            <h1>Curso de Coctelería 2024</h1>
+        <div id="video-screen" class="content-box video-container hidden">
+            <h2>Curso de Coctelería 2024</h2>
             <p>Disfruta de nuestro contenido exclusivo sobre coctelería profesional. Aprende técnicas, recetas y mucho más.</p>
-            <div class="video-container"></div>
+            <div class="video-container expanded"></div>
             <button id="logout-button">Cerrar Sesión</button>
         </div>
     </div>
 
-    <footer>
+    <footer class="footer-container">
         <p>Fluxon 2024. Todos los derechos reservados.</p>
     </footer>
 </body>
