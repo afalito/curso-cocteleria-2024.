@@ -12,15 +12,13 @@ document.getElementById('login-button').addEventListener('click', function() {
             videoScreen.style.display = 'block';
             videoScreen.classList.add('expanded', 'fade-in'); // Add expanded and fade-in class to make video container larger with transition
 
-            // Add YouTube iframe for video display with parameters to reduce ads
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI?rel=0&modestbranding=1&iv_load_policy=3';
-            iframe.width = '640';
-            iframe.height = '360';
-            iframe.frameBorder = '0';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            videoScreen.querySelector('.video-container').appendChild(iframe);
+            // Add HTML5 video element for video display without ads
+            const video = document.createElement('video');
+            video.src = 'tu_video.mp4'; // Ruta al video alojado en tu servidor
+            video.width = '640';
+            video.height = '360';
+            video.controls = true;
+            videoScreen.querySelector('.video-container').appendChild(video);
         }, 500); // Delay to allow fade-out to complete
     } else {
         document.getElementById('error-message').innerText = 'Usuario o clave incorrecta. Por favor, inténtalo de nuevo.';
@@ -45,10 +43,10 @@ document.getElementById('logout-button').addEventListener('click', function() {
         document.getElementById('password').value = '';
         document.getElementById('error-message').innerText = '';
 
-        // Remove iframe when logging out
-        const iframe = videoScreen.querySelector('iframe');
-        if (iframe) {
-            iframe.remove();
+        // Remove video element when logging out
+        const video = videoScreen.querySelector('video');
+        if (video) {
+            video.remove();
         }
     }, 500); // Delay to allow fade-out to complete
 });
