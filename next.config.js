@@ -7,10 +7,6 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; style-src 'self' 'unsafe-inline'; frame-src https://www.youtube.com; connect-src 'self' https://vercel.live"
-          },
-          {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
@@ -21,6 +17,14 @@ const nextConfig = {
           {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-src https://www.youtube.com https://vercel.live; connect-src 'self' https://vercel.live"
           }
         ],
       },
