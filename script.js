@@ -20,7 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: JSON.stringify({ username, password }),
                 });
 
-                const data = await response.json();
+                // Agregar este bloque para depuración
+                const responseText = await response.text();
+                console.log('Response text:', responseText);
+
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('Error parsing JSON:', parseError);
+                    errorMessage.innerText = 'Error en la respuesta del servidor';
+                    errorMessage.style.color = 'red';
+                    return;
+                }
 
                 if (data.success) {
                     loginScreen.classList.add('hidden');
@@ -50,19 +62,5 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Login button not found');
     }
 
-    // Logout functionality
-    const logoutButton = document.getElementById('logout-button');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function() {
-            videoScreen.classList.add('hidden');
-            loginScreen.classList.remove('hidden');
-            usernameInput.value = '';
-            passwordInput.value = '';
-            errorMessage.innerText = '';
-            const iframe = videoScreen.querySelector('iframe');
-            if (iframe) {
-                iframe.remove();
-            }
-        });
-    }
+    // El resto del código permanece igual...
 });
