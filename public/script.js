@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoScreen = document.getElementById('video-screen');
 
     if (loginButton) {
-        loginButton.addEventListener('click', async function() {
+        loginButton.addEventListener('click', async function(e) {
+            e.preventDefault();
             try {
                 const response = await fetch('/api/verify', {
                     method: 'POST',
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 const data = await response.json();
+                console.log('Response:', data); // Para depuración
 
                 if (data.success) {
                     loginScreen.classList.add('hidden');
