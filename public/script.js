@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     videoScreen.classList.remove('hidden');
                     const videoContainer = videoScreen.querySelector('.video-container');
                     
-                    // Agregar el iframe solo si no existe
                     if (!videoContainer.querySelector('iframe')) {
                         const iframe = document.createElement('iframe');
                         iframe.src = 'https://www.youtube.com/embed/1Dr-YXBubuI?rel=0&modestbranding=1&iv_load_policy=3';
@@ -38,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         iframe.allowFullscreen = true;
                         videoContainer.appendChild(iframe);
                     }
+                    // Ensure the page scrolls to the top when video is shown
+                    window.scrollTo(0, 0);
                 } else {
                     errorMessage.innerText = data.message || 'Usuario o clave incorrecta';
                     errorMessage.style.color = '#ff6666';
@@ -62,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (iframe) {
                 iframe.remove();
             }
+            // Ensure the page scrolls to the top when returning to login screen
+            window.scrollTo(0, 0);
         });
     }
 });
