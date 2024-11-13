@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   async headers() {
     return [
       {
@@ -17,6 +18,10 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self' https://www.youtube.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-src https://www.youtube.com"
+          }
         ],
       },
     ]
